@@ -1,0 +1,47 @@
+# 题目
+实现 int sqrt(int x) 函数。
+
+计算并返回 x 的平方根。
+
+x 保证是一个非负整数。
+# 解法1（自己写的）
+
+```ruby
+int mySqrt(int x) { int i;
+    if(x<2) {i=x;}
+   if(x>=2){
+       int k;
+       k=x/2;
+    for(i=0;i<k;i++){
+        int sum=i*i;
+        int sum1=(i+1)*(i+1);
+        if(x>=sum&&x<sum1)break;
+    }}
+    return i; 
+}
+```
+# 分析
+当输入的数大于2时直接在输入数据的二分之以下依次寻找，从0开始，到二分之一输入值结束，一旦有大于某一个数平方且小于那个数加一的平方，就停止循环并输出。经试验，此方法只在小范围内有效。
+# 解法二（网上的，升级版）
+
+```ruby
+public class Solution {  
+    public int mySqrt(int x) {  
+        int i=0, j=x;  
+        while (i<=j) {  
+            int m = (i+j)/2;  
+            long m2 = (long)m*m;  
+            if (m2==(long)x) return m;  
+            if (m2>x) {  
+                j = m - 1;  
+            } else {  
+                i = m + 1;  
+            }  
+        }  
+        return i-1;  
+    }  
+}  
+
+```
+# 分析
+解法是直接从输入数据的二分之一处以下开始进行判断，并利用了i和j两个变量同时分别递增和递减，不断重新寻找二分之一处来使代码更加简洁。我果然太年轻。
