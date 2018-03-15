@@ -1,0 +1,29 @@
+# 题目
+给定长度为 2n 的数组, 你的任务是将这些数分成 n 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大
+# 解法
+
+```
+int arrayPairSum(int* nums, int numsSize) {
+    int count=0;
+    for(int k=0;k<numsSize;k++){if(nums[k]<0) count++;}
+    int temp;
+            for(int i=0;i<count;i++){
+        for(int j=0;j<count-i;j++){
+            if(nums[j]<nums[j+1]){
+                temp=nums[j];
+                nums[j]=nums[j+1];
+                nums[j+1]=temp;}}}
+        for(int i=count;i<numsSize;i++){
+        for(int j=count;j<numsSize-i;j++){
+            if(nums[j]>nums[j+1]){
+                temp=nums[j];
+                nums[j]=nums[j+1];
+                nums[j+1]=temp;}}}
+    int sum=0;
+    for(int i=0;i<numsSize;){sum=sum+nums[i];i=i+2;}
+    return sum;
+    }
+```
+# 分析
+按题目要求，在正整数部分，只需将数据从小到大排序再两两组队，分别选取其中较小的数依次相加即可；负整数部分排列则需按从大到小的规则。这一点应当注意。
+在解题时采用了分部分排列的方式。除此之外，也可以在累加的时候分为两部分累加。
