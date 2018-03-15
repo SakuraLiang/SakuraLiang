@@ -1,0 +1,25 @@
+# 题目
+给定一个整数数组，除了某个元素外其余元素均出现两次。请找出这个只出现一次的元素。
+# 解法
+
+```ruby
+int singleNumber(int* nums, int numsSize) {
+    int symbol=0; int count=0;
+    int result;
+    if(numsSize==1) result=nums[0];
+    if(numsSize>1)
+    {int i;
+    for( i=1;i<numsSize;i++){
+   if(nums[0]==nums[i]) {symbol=nums[0];count++;break;}}
+    if(count==0) result=nums[i];
+    if(count==1){
+        for(int k=0;k<numsSize;k++){
+            for(int l=k+1;l<numsSize;l++ ){
+                if(nums[k]==nums[l]) {nums[k]=nums[0];nums[l]=nums[0];}}}
+    for(int n=0;n<numsSize;n++){if(nums[n]!=nums[0]) result=nums[n];}
+    }}
+return result;}
+```
+# 分析
+此题的关键在于如何将只出现过一次的元素与其他元素区别开来。
+我采用的是，先将第一个元素提出，遍历剩下元素，如果没有与之相同的，则直接跳出，输出结果；如果有与之相同的，则将此元素作为标志元素，再用两个for循环寻找是否有相同的元素，一旦出现，则将这两个元素都变为与标志元素一样的数值，最后遍历一次，一旦有与标志元素不同的元素，则将其输出。
