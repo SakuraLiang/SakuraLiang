@@ -11,20 +11,20 @@ public:
     int hIndex(vector<int>& citations) {
         if (citations.empty())
             return 0;
-        sort(citations.begin(), citations.end());
-        int len = citations.size(),maxH = 0;
-        for (int i = len - 1; i >= 0; --i)
+        sort(citations.begin(),citations.end());
+        int len=citations.size(),H=0;
+        for (int i=len-1;i>=0;--i)
         {
-            int h = len - i;
-            if (citations[i] >= h && h > maxH)
+            int h=len-i;
+            if (citations[i]>=h&&h>H)
             {
-                maxH = h;
+                H=h;
             }
             else{
                 break;
             }
         }
-        return maxH;
+        return H;
     }
 };
 ```
